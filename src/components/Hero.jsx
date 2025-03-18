@@ -1,7 +1,22 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const Hero = () => {
     const [imageError, setImageError] = useState(false)
+    const [isMobile, setIsMobile] = useState(false)
+    
+    useEffect(() => {
+        // Check if user is on a mobile device
+        const checkMobile = () => {
+            setIsMobile(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))
+        }
+        
+        checkMobile()
+        window.addEventListener('resize', checkMobile)
+        
+        return () => {
+            window.removeEventListener('resize', checkMobile)
+        }
+    }, [])
 
     return (
         <section id='hero' className="relative bg-farm-pattern bg-cover bg-center py-20 overflow-hidden">
@@ -30,6 +45,15 @@ const Hero = () => {
                             Contáctanos
                         </a>
                     </div>
+                    {isMobile && (
+                        <div className="mt-8 bg-farm-cafeClaro/10 border border-farm-cafeClaro/20 rounded-lg p-4 animate-pulse">
+                            <p className="text-farm-cafeOscuro flex items-center justify-center">
+                                <span className="mr-2 text-xl">🥚</span>
+                                ¡Agita tu teléfono para una sorpresa!
+                                <span className="ml-2 text-xl">🥚</span>
+                            </p>
+                        </div>
+                    )}
                 </div>
             </div>
             
