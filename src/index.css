@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-farm-50 text-farm-800 font-sans;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display; /* Removed font-bold since we're handling it differently */
+  }
+}
+
+/* Improved styling for Gagalin font to make it appear bolder */
+.font-display {
+  @apply tracking-wide; /* Added letter spacing */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+@layer components {
+  .rustic-border {
+    @apply border-2 border-farm-beige border-dashed;
+  }
+  
+  .farm-card {
+    @apply bg-white shadow-md rounded-lg overflow-hidden border border-farm-200;
+  }
+  
+  .farm-button {
+    @apply bg-farm-cafeClaro text-white px-6 py-3 rounded-md hover:bg-farm-cafeOscuro transition shadow-md border-2 border-farm-cafeOscuro font-bold;
+  }
+  
+  .farm-button-outline {
+    @apply border-2 border-farm-cafeOscuro text-farm-cafeOscuro px-6 py-3 rounded-md hover:bg-farm-cafeOscuro hover:text-white transition font-bold;
+  }
+}
+
+/* Remove test style */
+.test-style {
+  display: none;
+}
+
+/* Custom class to REALLY make text bolder when needed */
+.extra-bold {
+  text-shadow: 0 0 1px currentColor, 0 0 1px currentColor;
+  -webkit-text-stroke: 1px currentColor;
+}
